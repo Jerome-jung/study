@@ -1,3 +1,4 @@
+
 buildscript {
 	ext {
 		springBootVersion = '2.0.0.RELEASE'
@@ -17,15 +18,37 @@ apply plugin: 'io.spring.dependency-management'
 
 group = 'com.jerome.spring'
 version = '0.0.1-SNAPSHOT'
+
+description = """springbootfirst"""
+
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile){
+	options.encoding = 'UTF-8'
+}
 
 repositories {
 	mavenCentral()
 }
 
-springBoot {
-	executable = true
+sourceSets {
+	main.java.srcDirs=['src/main/java']
+	main.resources.srcDirs=['src/main/resources','src/main/recources-' + target]
 }
+
+jar {
+	version = '1.0.0'
+	manifest{
+		attributes 'Main-Class':'com.jerome.spring.springboot1.Springboot1Application'
+	}
+	from{
+		configurations.compile.collect {it.isDirectory()? it: zipTree(it)}
+	}
+}
+
+//springBoot {
+//	executable = true
+//}
 
 configurations {
 	providedRuntime
@@ -40,3 +63,4 @@ dependencies {
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
+
