@@ -1,14 +1,9 @@
-package com.jerome.spring.springboot1;
+package com.jerome.spring.springbootch1;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name="POST", schema="spring")
 public class Post {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private String id;
     private String name;
     private String address;
     private String content;
@@ -43,7 +38,7 @@ public class Post {
         return updated_at;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -59,7 +54,7 @@ public class Post {
         return content;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
